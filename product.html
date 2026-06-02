@@ -1,0 +1,363 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Page - Casid Pharmaceuticals</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="product.css">
+</head>
+<style>
+
+/* Footer Main */
+footer {
+    background-color: cadetblue;   /* Dark navy professional color */
+    color: #ffffff;
+    padding: 40px 20px 20px 20px;
+}
+/* Footer Row */
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+/* Footer Columns */
+.footer .col {
+    min-width: 250px;
+}
+/* Headings */
+.footer .h4 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #38bdf8;   /* Light blue highlight */
+}
+/* Paragraph Text */
+.footer p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #d1d5db;
+}
+/* Links */
+.footer a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+.footer a:hover {
+    color: #38bdf8;
+    text-decoration: underline;
+}
+/* Quick Links List */
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+.footer ul li {
+    margin-bottom: 8px;
+}
+/* Location Iframe */
+.locationiframe {
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+}
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .footer {
+        gap: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer .col {
+        width: 100%;
+    }
+    .locationiframe {
+        height: 220px;
+    }
+}
+@media (max-width: 480px) {
+    footer {
+        padding: 30px 15px;
+    }
+    .footer .h4 {
+        font-size: 18px;
+    }
+    .footer p,
+    .footer a {
+        font-size: 13px;
+    }
+}
+</style>
+<body>
+    <header class="navbar">
+        <ul class="nav">
+            <!-- <img src="https://casidpharma.com/images/casidpharma-logo1.png" class="mx-5" height="100px" width="200px" alt=""> -->
+        </ul>
+        <p class="h1 ps-5">Casid Pharmaceuticals</p>
+        <div class="menu">
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="market.html">Marketing</a></li>
+                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+  <section id="duct">
+    <div class="container text-center">
+        <h1>Product</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Product
+                </li>
+            </ol>
+        </nav>
+    </div>
+</section>
+    <section id="products" class="pt-5">
+        <div class="row cards">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./gynecology" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">GYNECOLOGY RANGE</h4>
+                    </div> 
+                    </div>   
+                </div>    
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./multivitamin_image" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">MULTI VITAMINS</h4>
+                    </div> 
+                    </div>   
+                </div> 
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./derma_image" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">DERMA RANGE</h4>
+                    </div> 
+                    </div>   
+                </div> 
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./diabetes_image" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">DIABETES RANGE</h4>
+                    </div> 
+                    </div>   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./cardiac_image" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">CARDIAC RANGE</h4>
+                    </div> 
+                    </div>   
+                </div>    
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./urology_image" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">UROLOGY</h4>
+                    </div> 
+                    </div>   
+                </div> 
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./antiepileptic-drugs.webp" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">ANTI EPILEPTIC</h4>
+                    </div> 
+                    </div>   
+                </div> 
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./respiratory_image" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">RESPIRATORY RANGE</h4>
+                    </div> 
+                    </div>   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./paediatrics_images" height="200px" width="100%">
+                    
+                    <div class="body">
+                        <h4 class="card-title text-center">PAEDIATRICS</h4>
+                    </div> 
+                    </div>   
+                </div>    
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./probiotics_image" height="200px" width="100%">
+                    
+                    <div class="body">
+                        <h4 class="card-title text-center">PROBIOTICS</h4>
+                    </div> 
+                    </div>   
+                </div> 
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./neuro" height="200px" width="100%">
+                    
+                    <div class="body">
+                        <h4 class="card-title text-center">NEURO</h4>
+                    </div> 
+                    </div>   
+                </div> 
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./laxative_image" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">LAXATIVE</h4>
+                    </div> 
+                    </div>   
+                </div>   
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./injection" height="200px" width="100%">
+                    
+                    <div class="body">
+                        <h4 class="card-title text-center">GENERAL <br> INJECTION</h4>
+                    </div> 
+                    </div>   
+                </div>    
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./anticoagulant injection" height="200px" width="100%">
+                    
+                    <div class="body">
+                        <h4 class="card-title text-center">ANTICOAGULANT INJECTION</h4>
+                    </div> 
+                    </div>   
+                </div> 
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./antiallergic" height="200px" width="100%">
+                    
+                    <div class="body">
+                        <h4 class="card-title text-center">ANTI <br> ALLERGIC</h4>
+                    </div> 
+                    </div>   
+                </div> 
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./anti infective injection" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">ANTI-INFECTIVE <br> INJECTION</h4>
+                    </div> 
+                    </div>   
+                </div>   
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./antiinflammatory" height="200px" width="100%">
+                    
+                    <div class="body">
+                        <h4 class="card-title text-center">ANTI INFLAMMATORY</h4>
+                    </div> 
+                    </div>   
+                </div>    
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./anti ulcer" height="200px" width="100%">
+                    
+                    <div class="body">
+                        <h4 class="card-title text-center">ANTI ULCER</h4>
+                    </div> 
+                    </div>   
+                </div> 
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./tablets" height="200px" width="100%">
+                    
+                    <div class="body">
+                        <h4 class="card-title text-center">ANTI-INFECTIVE TABLETS</h4>
+                    </div> 
+                    </div>   
+                </div> 
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./syrup" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">COUGH SYRUP</h4>
+                    </div> 
+                    </div>   
+                </div>   
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./germ" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">GERMICIDE</h4>
+                    </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="./hypertensive" height="200px" width="100%">
+                    <div class="body">
+                        <h4 class="card-title text-center">ANTI-HYPER TENSIVE</h4>
+                    </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <p class="h4 text-center mt-3">About Us</p>
+                    <p>
+                    Since from 2000, Casid Pharmaceuticals Pvt Ltd is a pharmaceutical manufacturing and marketing company headquarted in Trichy, india. The company products are available in Oral Solids, Oral Liquids and Topical dosage forms. Driven by value based business operations, the company's products are known for consistent quality and ethical promotion
+                    </p>
+                </div>
+                <div class="col">
+                    <p class="h4 text-center mt-3">Contact Us</p>
+                    <p>No.75, Ground Floor, Salai Road, Woraiyur, Trichy - 620 003</p>
+                    <a href="tel:+91 93449 00369 | 70944 56981">+91 93449 00369 | 70944 56981</a><br>
+                    <a href="mailto:info@casidpharma.com">info@casidpharma.com</a>
+                </div>
+                <div class="col">
+                    <p class="h4 text-center mt-3">Quick Links</p>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="product.html">Products</a></li>
+                        <li><a href="market.html">Marketing</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>    
+                </div>
+                <div class="col">
+                    <p class="h4 text-center mt-3">Location</p>
+                    <iframe class="locationiframe" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d489.8491304541345!2d78.68168!3d10.827144!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baab8a3a198ebd5%3A0xb6152f14c9e1ff0c!2sCasid%20Pharmaceuticals%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1754387833832!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Page - Casid Pharmaceuticals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+
+    /* ==============================
+       HEADER (from market.css - unchanged)
+    ============================== */
+    header.navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: palegreen;
+        padding: 10px 30px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    header.navbar img { max-width: 180px; height: auto; }
+    header.navbar .h1 { font-size: 28px; font-weight: 600; color: #0f172a; margin: 0; white-space: nowrap; }
+    .menu ul { display: flex; gap: 20px; margin: 0; padding: 0; }
+    .nav-link { color: #0f172a !important; font-weight: 500; text-decoration: none; transition: 0.3s ease; position: relative; }
+    .nav-link:hover { color: #2563eb !important; }
+    .nav-link::after { content: ""; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: #2563eb; transition: width 0.3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    @media (max-width: 992px) {
+        header.navbar { flex-wrap: wrap; text-align: center; }
+        header.navbar .h1 { width: 100%; margin-top: 10px; font-size: 24px; }
+        .menu { width: 100%; margin-top: 10px; }
+        .menu ul { justify-content: center; flex-wrap: wrap; }
+    }
+    @media (max-width: 576px) {
+        header.navbar { padding: 10px 15px; }
+        header.navbar img { max-width: 140px; }
+        header.navbar .h1 { font-size: 20px; }
+        .menu ul { flex-direction: column; gap: 10px; }
+    }
+
+    /* ==============================
+       MARKETING HERO (from market.css - unchanged)
+    ============================== */
+    #market {
+        background: linear-gradient(rgba(13, 110, 253, 0.85), rgba(32, 201, 151, 0.85)),
+                    url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88') center/cover no-repeat;
+        padding: 100px 20px;
+        color: #ffffff;
+        position: relative;
+    }
+    #market .market { display: flex; justify-content: center; align-items: center; }
+    #market h1 { font-size: 42px; font-weight: 700; margin-bottom: 15px; letter-spacing: 1px; }
+    #market .breadcrumb { background: transparent; margin-bottom: 0; }
+    #market .breadcrumb-item a { color: #ffffff; text-decoration: none; font-weight: 500; transition: 0.3s ease; }
+    #market .breadcrumb-item a:hover { color: #ffd43b; text-decoration: underline; }
+    #market .breadcrumb-item.active { color: #e9ecef; }
+    @media (max-width: 992px) { #market { padding: 80px 20px; } #market h1 { font-size: 34px; } }
+    @media (max-width: 576px) { #market { padding: 60px 15px; } #market h1 { font-size: 26px; } #market .breadcrumb { font-size: 14px; } }
+
+    /* ==============================
+       MAIN CONTENT SECTION (from market.css - unchanged)
+    ============================== */
+    #mark { background: honeydew; padding: 70px 20px; }
+    #mark .contant { display: flex; flex-wrap: wrap; gap: 40px; }
+    #mark .col { flex: 1; min-width: 300px; }
+    #mark h3 { color: #0f5132; font-weight: 700; margin-bottom: 15px; }
+    #mark p { font-size: 15px; line-height: 1.8; color: #495057; }
+    #mark .lorem { background: #ffffff; padding: 25px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 128, 0, 0.08); border-left: 5px solid #20c997; }
+    #mark .lorem p { font-style: italic; color: #198754; margin: 0; }
+    .quick { list-style: none; padding: 25px; background: #ffffff; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
+    .quick h5 { color: #0d6efd; font-weight: 600; margin-bottom: 15px; }
+    .quick li { margin-bottom: 10px; }
+    .quick a { text-decoration: none; color: #198754; font-weight: 500; transition: 0.3s; }
+    .quick a:hover { color: #0d6efd; padding-left: 5px; }
+    #mark h4 { color: #0f5132; font-weight: 600; margin-bottom: 15px; }
+    #mark a { text-decoration: none; color: #198754; font-weight: 500; }
+    #mark a:hover { color: #0d6efd; text-decoration: underline; }
+    @media (max-width: 992px) { #mark { padding: 50px 15px; } #mark .contant { flex-direction: column; } }
+    @media (max-width: 576px) { #mark h3 { font-size: 20px; text-align: center; } #mark p { font-size: 14px; text-align: center; } .quick { text-align: center; } .quick li { margin-bottom: 8px; } }
+
+    /* ==============================
+       FOOTER (unchanged)
+    ============================== */
+    footer { background-color: cadetblue; color: #ffffff; padding: 40px 20px 20px 20px; }
+    .footer { display: flex; flex-wrap: wrap; gap: 30px; }
+    .footer .col { min-width: 250px; }
+    .footer .h4 { font-weight: 600; margin-bottom: 15px; color: #38bdf8; }
+    .footer p { font-size: 14px; line-height: 1.6; color: #d1d5db; }
+    .footer a { color: #ffffff; text-decoration: none; font-size: 14px; transition: 0.3s ease; }
+    .footer a:hover { color: #38bdf8; text-decoration: underline; }
+    .footer ul { list-style: none; padding: 0; }
+    .footer ul li { margin-bottom: 8px; }
+    .locationiframe { width: 100%; height: 250px; border-radius: 10px; }
+    @media (max-width: 992px) { .footer { gap: 20px; } }
+    @media (max-width: 768px) { .footer { flex-direction: column; text-align: center; } .footer .col { width: 100%; } .locationiframe { height: 220px; } }
+    @media (max-width: 480px) { footer { padding: 30px 15px; } .footer .h4 { font-size: 18px; } .footer p, .footer a { font-size: 13px; } }
+
+    /* ==============================
+       NEW EXTRA SECTIONS - ADDED BELOW
+    ============================== */
+
+    /* --- STATS COUNTER STRIP --- */
+    #stats-strip {
+        background: linear-gradient(135deg, #0f5132 0%, #198754 50%, #20c997 100%);
+        padding: 50px 20px;
+        font-family: 'Source Sans 3', sans-serif;
+    }
+    .stat-item { text-align: center; padding: 10px 20px; }
+    .stat-number {
+        font-family: 'Merriweather', serif;
+        font-size: 2.8rem;
+        font-weight: 900;
+        color: #ffffff;
+        line-height: 1;
+        display: block;
+    }
+    .stat-suffix { font-size: 2rem; color: #a7f3d0; }
+    .stat-label { font-size: 0.9rem; color: #d1fae5; font-weight: 500; margin-top: 6px; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-divider { width: 1px; background: rgba(255,255,255,0.2); margin: 0 auto; }
+    @media (max-width: 768px) { .stat-number { font-size: 2.2rem; } .stat-divider { display: none; } }
+
+    /* --- MARKETING APPROACH CARDS --- */
+    #approach {
+        background: #f8fffe;
+        padding: 80px 20px;
+        font-family: 'Source Sans 3', sans-serif;
+    }
+    .approach-header { text-align: center; margin-bottom: 50px; }
+    .approach-header h2 {
+        font-family: 'Merriweather', serif;
+        font-size: 2.2rem;
+        color: #0f5132;
+        font-weight: 900;
+        margin-bottom: 12px;
+    }
+    .approach-header p { color: #6c757d; font-size: 1rem; max-width: 600px; margin: 0 auto; }
+    .approach-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 36px 28px;
+        height: 100%;
+        box-shadow: 0 6px 28px rgba(0,100,60,0.07);
+        border-bottom: 4px solid transparent;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    .approach-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #198754, #20c997);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+    .approach-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,100,60,0.13); }
+    .approach-card:hover::before { transform: scaleX(1); }
+    .approach-icon {
+        width: 64px; height: 64px;
+        border-radius: 16px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+    .approach-icon.green { background: #d1fae5; color: #198754; }
+    .approach-icon.blue { background: #dbeafe; color: #2563eb; }
+    .approach-icon.teal { background: #ccfbf1; color: #0d9488; }
+    .approach-icon.orange { background: #fef3c7; color: #d97706; }
+    .approach-icon.purple { background: #ede9fe; color: #7c3aed; }
+    .approach-icon.red { background: #fee2e2; color: #dc2626; }
+    .approach-card h5 { font-family: 'Merriweather', serif; font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 12px; }
+    .approach-card p { font-size: 0.9rem; color: #6b7280; line-height: 1.7; margin: 0; }
+
+    /* --- DISTRIBUTION NETWORK MAP --- */
+    #distribution {
+        background: #edfcf2;
+        padding: 80px 20px;
+        font-family: 'Source Sans 3', sans-serif;
+    }
+    .dist-header { text-align: center; margin-bottom: 50px; }
+    .dist-header h2 { font-family: 'Merriweather', serif; font-size: 2.2rem; color: #0f5132; font-weight: 900; margin-bottom: 12px; }
+    .dist-header p { color: #6c757d; max-width: 600px; margin: 0 auto; }
+    .district-card {
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 20px 22px;
+        box-shadow: 0 4px 16px rgba(0,100,60,0.07);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        transition: all 0.25s ease;
+        margin-bottom: 16px;
+        border-left: 4px solid #20c997;
+    }
+    .district-card:hover { transform: translateX(6px); box-shadow: 0 8px 24px rgba(0,100,60,0.12); }
+    .district-icon { font-size: 1.5rem; color: #198754; min-width: 36px; text-align: center; }
+    .district-card h6 { margin: 0; font-weight: 700; color: #0f5132; font-size: 0.95rem; }
+    .district-card span { font-size: 0.8rem; color: #6b7280; }
+    .dist-highlight {
+        background: linear-gradient(135deg, #0f5132, #198754);
+        border-radius: 20px;
+        padding: 40px 35px;
+        color: white;
+        height: 100%;
+    }
+    .dist-highlight h4 { font-family: 'Merriweather', serif; font-size: 1.5rem; margin-bottom: 20px; }
+    .dist-highlight ul { list-style: none; padding: 0; }
+    .dist-highlight ul li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.15); font-size: 0.92rem; display: flex; align-items: center; gap: 10px; }
+    .dist-highlight ul li:last-child { border-bottom: none; }
+    .dist-highlight ul li i { color: #6ee7b7; font-size: 1rem; }
+
+    /* --- WHY CHOOSE US --- */
+    #why-us {
+        background: #ffffff;
+        padding: 80px 20px;
+        font-family: 'Source Sans 3', sans-serif;
+    }
+    .why-header { text-align: center; margin-bottom: 50px; }
+    .why-header h2 { font-family: 'Merriweather', serif; font-size: 2.2rem; color: #0f5132; font-weight: 900; margin-bottom: 12px; }
+    .why-header p { color: #6c757d; max-width: 600px; margin: 0 auto; }
+    .why-row { display: flex; flex-wrap: wrap; gap: 0; }
+    .why-item {
+        flex: 1 1 45%;
+        display: flex;
+        gap: 20px;
+        padding: 28px;
+        border-bottom: 1px solid #f1f5f9;
+        border-right: 1px solid #f1f5f9;
+        transition: background 0.2s;
+    }
+    .why-item:hover { background: #f0fdf4; }
+    .why-num {
+        font-family: 'Merriweather', serif;
+        font-size: 2.8rem;
+        font-weight: 900;
+        color: #d1fae5;
+        line-height: 1;
+        min-width: 54px;
+    }
+    .why-text h6 { font-weight: 700; color: #0f172a; font-size: 1rem; margin-bottom: 8px; }
+    .why-text p { font-size: 0.88rem; color: #6b7280; line-height: 1.7; margin: 0; }
+    @media (max-width: 768px) { .why-item { flex: 1 1 100%; border-right: none; } }
+
+    /* --- PRODUCT CATEGORIES --- */
+    #product-cats {
+        background: linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 100%);
+        padding: 80px 20px;
+        font-family: 'Source Sans 3', sans-serif;
+    }
+    .cats-header { text-align: center; margin-bottom: 50px; }
+    .cats-header h2 { font-family: 'Merriweather', serif; font-size: 2.2rem; color: #0f5132; font-weight: 900; margin-bottom: 12px; }
+    .cats-header p { color: #6c757d; max-width: 600px; margin: 0 auto; }
+    .cat-pill {
+        background: #ffffff;
+        border: 2px solid #a7f3d0;
+        border-radius: 50px;
+        padding: 14px 28px;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        color: #0f5132;
+        font-size: 0.92rem;
+        transition: all 0.25s;
+        cursor: default;
+        margin: 6px;
+        box-shadow: 0 2px 8px rgba(0,100,60,0.05);
+    }
+    .cat-pill:hover { background: #198754; color: #fff; border-color: #198754; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(25,135,84,0.22); }
+    .cat-pill i { font-size: 1.1rem; }
+    .cats-wrap { display: flex; flex-wrap: wrap; justify-content: center; }
+
+    /* --- ETHICAL PROMOTION --- */
+    #ethical {
+        background: #0f5132;
+        padding: 80px 20px;
+        font-family: 'Source Sans 3', sans-serif;
+        position: relative;
+        overflow: hidden;
+    }
+    #ethical::before {
+        content: '';
+        position: absolute;
+        width: 500px; height: 500px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.03);
+        top: -150px; right: -150px;
+    }
+    .ethical-header { text-align: center; margin-bottom: 50px; }
+    .ethical-header h2 { font-family: 'Merriweather', serif; font-size: 2.2rem; color: #ffffff; font-weight: 900; margin-bottom: 12px; }
+    .ethical-header p { color: #a7f3d0; max-width: 600px; margin: 0 auto; }
+    .ethical-card {
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 18px;
+        padding: 32px 24px;
+        text-align: center;
+        transition: all 0.3s;
+        height: 100%;
+    }
+    .ethical-card:hover { background: rgba(255,255,255,0.13); transform: translateY(-4px); }
+    .ethical-card i { font-size: 2.5rem; color: #6ee7b7; margin-bottom: 18px; display: block; }
+    .ethical-card h5 { color: #ffffff; font-weight: 700; font-size: 1rem; margin-bottom: 12px; }
+    .ethical-card p { color: #a7f3d0; font-size: 0.87rem; line-height: 1.7; margin: 0; }
+
+    /* --- TESTIMONIALS --- */
+    #testimonials {
+        background: #f8fffe;
+        padding: 80px 20px;
+        font-family: 'Source Sans 3', sans-serif;
+    }
+    .test-header { text-align: center; margin-bottom: 50px; }
+    .test-header h2 { font-family: 'Merriweather', serif; font-size: 2.2rem; color: #0f5132; font-weight: 900; margin-bottom: 12px; }
+    .test-header p { color: #6c757d; max-width: 600px; margin: 0 auto; }
+    .test-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 36px 30px;
+        box-shadow: 0 6px 28px rgba(0,100,60,0.08);
+        position: relative;
+        height: 100%;
+        border-top: 4px solid #20c997;
+    }
+    .test-card .quote-mark {
+        font-size: 5rem;
+        color: #d1fae5;
+        line-height: 0.6;
+        font-family: 'Merriweather', serif;
+        display: block;
+        margin-bottom: 18px;
+    }
+    .test-card p { font-size: 0.92rem; color: #374151; line-height: 1.8; font-style: italic; margin-bottom: 24px; }
+    .test-author { display: flex; align-items: center; gap: 14px; }
+    .test-avatar {
+        width: 48px; height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #198754, #20c997);
+        display: flex; align-items: center; justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+    .test-author-info strong { display: block; font-size: 0.92rem; color: #0f172a; font-weight: 700; }
+    .test-author-info span { font-size: 0.8rem; color: #6b7280; }
+
+    /* --- CTA BANNER --- */
+    #cta-banner {
+        background: linear-gradient(135deg, #0d6efd 0%, #198754 60%, #20c997 100%);
+        padding: 70px 20px;
+        text-align: center;
+        font-family: 'Source Sans 3', sans-serif;
+    }
+    #cta-banner h2 { font-family: 'Merriweather', serif; font-size: 2rem; color: #fff; font-weight: 900; margin-bottom: 14px; }
+    #cta-banner p { color: rgba(255,255,255,0.85); font-size: 1rem; max-width: 560px; margin: 0 auto 30px; }
+    .cta-btn {
+        display: inline-block;
+        background: #ffffff;
+        color: #0f5132;
+        font-weight: 700;
+        padding: 14px 36px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        margin: 6px;
+        transition: all 0.25s;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+    }
+    .cta-btn:hover { background: #0f5132; color: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .cta-btn-outline {
+        background: transparent;
+        color: #fff;
+        border: 2px solid rgba(255,255,255,0.7);
+    }
+    .cta-btn-outline:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+    /* Scroll reveal animation */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    </style>
+</head>
+<body>
+
+<!-- ======= HEADER (unchanged) ======= -->
+<header class="navbar">
+    <ul class="nav">
+        <!-- <img src="https://casidpharma.com/images/casidpharma-logo1.png" class="mx-5" height="100px" width="200px" alt=""> -->
+    </ul>
+    <p class="h1 ps-5">Casid Pharmaceuticals</p>
+    <div class="menu">
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- ======= HERO SECTION (unchanged) ======= -->
+<section id="market">
+    <div class="row market">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col text-center">
+                    <h1>Marketing</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Marketing</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= ORIGINAL CONTENT SECTION (unchanged structure & style) ======= -->
+<section id="mark">
+    <div class="container-fluid mark">
+        <div class="row contant">
+            <div class="col">
+                <b><h3 class="justify-content-center">Indian Market</h3></b><br>
+                <p>Marketing is one of the core strengths of CASID PHARMACEUTICALS LTD. The company boasts of a formidable sales and marketing team across Tamilnadu. The company's products are marketed through ethical promotion, promoted through the medical fraternity. Our field force maintains strong relationships with doctors, chemists, and hospitals across the region ensuring consistent prescription generation and brand recall.</p>
+                <br>
+                <b><h3 class="justify-content-center">Marketing Leadership</h3></b><br>
+                <p>Our domestic formulations are strongly backed by a dedicated Sales, Marketing, and Distribution team to cater to the growing domestic pharma market. Currently, CASID has a domestic presence in Tamil Nadu. The marketing team operates with a clear vision: to deliver quality medicines to every corner of the state through a robust network of stockists, distributors, and retail pharmacies.</p>
+                <br>
+                <b><h3 class="justify-content-center">Our Distribution Strength</h3></b><br>
+                <p>Casid Pharmaceuticals operates through a well-established distribution network covering major districts of Tamil Nadu. We work closely with C&F agents, super stockists, and retail pharmacies to ensure product availability, cold chain management, and timely delivery to every point of sale. Our logistics backbone ensures zero stock-out situations for our doctors and chemist partners.</p>
+                <br>
+                <div class="container lorem">
+                    <p class="text-center">"Thanks to our strong research and development initiatives and innovative products we are recognised as the premier manufacturer in the pharmaceutical industry. Our commitment to ethical marketing has made us the trusted partner of thousands of healthcare professionals across Tamil Nadu."</p>
+                </div>
+            </div>
+            <div class="col">
+                <ul class="quick">
+                    <h5 class="text-center">Quick links</h5>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="market.html">Marketing</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <h4 class="text-center">Contact Details</h4>
+                <p class="text-center"><a href="tel:+919344900369">+91 93449 00369</a></p>
+                <p class="text-center"><a href="tel:+917094456981">70944 56981</a></p>
+                <p class="text-center"><a href="mailto:info@casidpharma.com">info@casidpharma.com</a></p>
+                <br>
+                <h4 class="text-center">Office Address</h4>
+                <p class="text-center">No.75, Ground Floor, Salai Road,<br>Woraiyur, Trichy - 620 003,<br>Tamil Nadu, India</p>
+                <br>
+                <h4 class="text-center">Business Hours</h4>
+                <p class="text-center">Monday – Saturday<br>9:00 AM – 6:00 PM IST</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= STATS STRIP ======= -->
+<section id="stats-strip">
+    <div class="container-fluid">
+        <div class="row text-center align-items-center">
+            <div class="col-6 col-md-3 stat-item reveal">
+                <span class="stat-number"><span class="counter" data-target="25">0</span><span class="stat-suffix">+</span></span>
+                <p class="stat-label">Years of Excellence</p>
+            </div>
+            <div class="col-6 col-md-3 stat-item reveal">
+                <span class="stat-number"><span class="counter" data-target="150">0</span><span class="stat-suffix">+</span></span>
+                <p class="stat-label">Product Range</p>
+            </div>
+            <div class="col-6 col-md-3 stat-item reveal">
+                <span class="stat-number"><span class="counter" data-target="500">0</span><span class="stat-suffix">+</span></span>
+                <p class="stat-label">Doctors Network</p>
+            </div>
+            <div class="col-6 col-md-3 stat-item reveal">
+                <span class="stat-number"><span class="counter" data-target="30">0</span><span class="stat-suffix">+</span></span>
+                <p class="stat-label">Districts Covered</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= MARKETING APPROACH CARDS ======= -->
+<section id="approach">
+    <div class="container-xl">
+        <div class="approach-header reveal">
+            <h2>Our Marketing Approach</h2>
+            <p>Casid Pharmaceuticals follows a structured, doctor-centric marketing model built on trust, quality, and ethical practice.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-12 col-sm-6 col-lg-4 reveal">
+                <div class="approach-card">
+                    <div class="approach-icon green"><i class="fa-solid fa-user-doctor"></i></div>
+                    <h5>Doctor Detailing Programme</h5>
+                    <p>Our Medical Representatives visit registered MBBS, MD, and specialist doctors regularly, providing scientific literature, product samples and clinical data to support evidence-based prescribing.</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4 reveal">
+                <div class="approach-card">
+                    <div class="approach-icon blue"><i class="fa-solid fa-hospital"></i></div>
+                    <h5>Hospital & Institution Tie-ups</h5>
+                    <p>We partner with government hospitals, private nursing homes and multi-specialty clinics to ensure our formulations are available on formulary lists and prescribed by in-house specialists.</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4 reveal">
+                <div class="approach-card">
+                    <div class="approach-icon teal"><i class="fa-solid fa-pills"></i></div>
+                    <h5>Retail Pharmacy Network</h5>
+                    <p>Through our distributor network, Casid products are stocked in over thousands of retail pharmacies across Tamil Nadu ensuring easy patient access and high brand visibility at the point of sale.</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4 reveal">
+                <div class="approach-card">
+                    <div class="approach-icon orange"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h5>CME & Medical Conferences</h5>
+                    <p>We actively sponsor Continuing Medical Education events, product launches, and medical seminars to enhance brand credibility and engage with key opinion leaders (KOLs) in the healthcare sector.</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4 reveal">
+                <div class="approach-card">
+                    <div class="approach-icon purple"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h5>Efficient Supply Chain</h5>
+                    <p>Our logistics and supply chain team ensures on-time delivery, optimal inventory management, and uninterrupted product supply to every distributor and stockist point across the state.</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4 reveal">
+                <div class="approach-card">
+                    <div class="approach-icon red"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h5>Pharmacovigilance & Quality</h5>
+                    <p>We follow stringent post-market surveillance and pharmacovigilance practices to monitor product safety, handle adverse event reporting, and maintain compliance with all regulatory standards.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= DISTRIBUTION NETWORK ======= -->
+<section id="distribution">
+    <div class="container-xl">
+        <div class="dist-header reveal">
+            <h2>Distribution Network – Tamil Nadu</h2>
+            <p>With a robust distribution model, Casid Pharmaceuticals reaches patients across major districts of Tamil Nadu through dedicated stockists and distributors.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-12 col-lg-8 reveal">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <div class="district-card"><span class="district-icon"><i class="fa-solid fa-location-dot"></i></span><div><h6>Trichy (HQ)</h6><span>Headquarters & Manufacturing Base</span></div></div>
+                        <div class="district-card"><span class="district-icon"><i class="fa-solid fa-location-dot"></i></span><div><h6>Chennai</h6><span>Metropolitan Distribution Hub</span></div></div>
+                        <div class="district-card"><span class="district-icon"><i class="fa-solid fa-location-dot"></i></span><div><h6>Coimbatore</h6><span>Western Tamil Nadu Region</span></div></div>
+                        <div class="district-card"><span class="district-icon"><i class="fa-solid fa-location-dot"></i></span><div><h6>Madurai</h6><span>Southern Tamil Nadu Region</span></div></div>
+                        <div class="district-card"><span class="district-icon"><i class="fa-solid fa-location-dot"></i></span><div><h6>Salem</h6><span>Central Tamil Nadu Region</span></div></div>
+                        <div class="district-card"><span class="district-icon"><i class="fa-solid fa-location-dot"></i></span><div><h6>Erode</h6><span>Textile & Trade Hub Catchment</span></div></div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <div class="district-card"><span class="district-icon"><i class="fa-solid fa-location-dot"></i></span><div><h6>Tirunelveli</h6><span>Deep South Tamil Nadu</span></div></div>
+                        <div class="district-card"><span class="district-icon"><i class="fa-solid fa-location-dot"></i></span><div><h6>Vellore</h6><span>Northern Tamil Nadu Region</span></div></div>
+                        <div class="district-card"><span class="district-icon"><i class="fa-solid fa-location-dot"></i></span><div><h6>Thanjavur</h6><span>Delta Region Coverage</span></div></div>
+                        <div class="district-card"><span class="district-icon"><i class="fa-solid fa-location-dot"></i></span><div><h6>Cuddalore</h6><span>Coastal Belt Distribution</span></div></div>
+                        <div class="district-card"><span class="district-icon"><i class="fa-solid fa-location-dot"></i></span><div><h6>Dindigul</h6><span>Hill & Plains Sector</span></div></div>
+                        <div class="district-card"><span class="district-icon"><i class="fa-solid fa-location-dot"></i></span><div><h6>Nagercoil</h6><span>Southern Tip Tamil Nadu</span></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 reveal">
+                <div class="dist-highlight">
+                    <h4><i class="fa-solid fa-network-wired me-2"></i>Network Highlights</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> 30+ Districts covered across Tamil Nadu</li>
+                        <li><i class="fa-solid fa-circle-check"></i> 200+ Active Stockists & Distributors</li>
+                        <li><i class="fa-solid fa-circle-check"></i> 1000+ Retail Pharmacy Points</li>
+                        <li><i class="fa-solid fa-circle-check"></i> 500+ Registered Doctor Partners</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Weekly supply replenishment cycles</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Real-time inventory tracking system</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Dedicated field sales team per territory</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Same-day dispatch from Trichy warehouse</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Cold chain support for sensitive products</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= WHY CHOOSE CASID ======= -->
+<section id="why-us">
+    <div class="container-xl">
+        <div class="why-header reveal">
+            <h2>Why Partner with Casid Pharmaceuticals?</h2>
+            <p>Healthcare professionals and trade partners choose Casid for consistent quality, ethical practices and strong field support.</p>
+        </div>
+        <div class="why-row reveal">
+            <div class="why-item">
+                <div class="why-num">01</div>
+                <div class="why-text">
+                    <h6>25+ Years of Manufacturing Trust</h6>
+                    <p>Established in 2000, Casid has built a legacy of pharmaceutical manufacturing with consistent quality across oral solids, oral liquids, and topical dosage forms from our Trichy facility.</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="why-num">02</div>
+                <div class="why-text">
+                    <h6>GMP Compliant Manufacturing</h6>
+                    <p>Our facility adheres to WHO-GMP guidelines ensuring every batch meets stringent quality control parameters before reaching our distribution network and patients.</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="why-num">03</div>
+                <div class="why-text">
+                    <h6>Ethical & Transparent Promotion</h6>
+                    <p>We follow value-based business ethics. No false claims, no misleading promotions — only science-backed product information shared with the medical community.</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="why-num">04</div>
+                <div class="why-text">
+                    <h6>Competitive Trade Margins</h6>
+                    <p>Our distributor and stockist partners benefit from attractive trade margins, timely credit cycles, and well-structured incentive programs that ensure profitable business relationships.</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="why-num">05</div>
+                <div class="why-text">
+                    <h6>Responsive Customer Support</h6>
+                    <p>Dedicated area managers and customer service executives are always available to resolve queries, manage complaints, and provide after-sales support to doctors and trade partners.</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="why-num">06</div>
+                <div class="why-text">
+                    <h6>Affordable Pricing for Patients</h6>
+                    <p>We are committed to keeping medicine affordable. Our pricing strategy ensures high-quality formulations remain accessible to patients across all economic backgrounds in Tamil Nadu.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= PRODUCT CATEGORIES ======= -->
+<section id="product-cats">
+    <div class="container-xl">
+        <div class="cats-header reveal">
+            <h2>Our Product Categories</h2>
+            <p>Casid Pharmaceuticals offers a comprehensive range of formulations across multiple therapeutic segments to address diverse patient needs.</p>
+        </div>
+        <div class="cats-wrap reveal">
+            <span class="cat-pill"><i class="fa-solid fa-lungs"></i> Respiratory</span>
+            <span class="cat-pill"><i class="fa-solid fa-heart-pulse"></i> Cardiac Care</span>
+            <span class="cat-pill"><i class="fa-solid fa-droplet"></i> Anti-Diabetic</span>
+            <span class="cat-pill"><i class="fa-solid fa-bacteria"></i> Antibiotics</span>
+            <span class="cat-pill"><i class="fa-solid fa-brain"></i> Neurology</span>
+            <span class="cat-pill"><i class="fa-solid fa-stomach"></i> Gastroenterology</span>
+            <span class="cat-pill"><i class="fa-solid fa-bone"></i> Orthopaedics</span>
+            <span class="cat-pill"><i class="fa-solid fa-eye"></i> Ophthalmic</span>
+            <span class="cat-pill"><i class="fa-solid fa-child"></i> Paediatrics</span>
+            <span class="cat-pill"><i class="fa-solid fa-venus"></i> Gynaecology</span>
+            <span class="cat-pill"><i class="fa-solid fa-skin"></i> Dermatology</span>
+            <span class="cat-pill"><i class="fa-solid fa-vial"></i> Vitamins & Supplements</span>
+            <span class="cat-pill"><i class="fa-solid fa-ear-deaf"></i> ENT</span>
+            <span class="cat-pill"><i class="fa-solid fa-shield-virus"></i> Anti-Allergic</span>
+            <span class="cat-pill"><i class="fa-solid fa-kit-medical"></i> Pain Management</span>
+            <span class="cat-pill"><i class="fa-solid fa-microscope"></i> Anti-Infective</span>
+        </div>
+        <div class="row g-3 mt-4 reveal">
+            <div class="col-12 col-md-4">
+                <div style="background:#fff;border-radius:16px;padding:24px 20px;box-shadow:0 4px 18px rgba(0,100,60,0.07);border-top:4px solid #198754;">
+                    <h5 style="color:#0f5132;font-weight:700;font-family:'Merriweather',serif;"><i class="fa-solid fa-capsules me-2 text-success"></i>Oral Solid Dosage</h5>
+                    <p style="color:#6b7280;font-size:0.88rem;line-height:1.7;margin:0;">Tablets, capsules, and sachets manufactured under strict GMP conditions with advanced granulation, coating and compression technology.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div style="background:#fff;border-radius:16px;padding:24px 20px;box-shadow:0 4px 18px rgba(0,100,60,0.07);border-top:4px solid #0d6efd;">
+                    <h5 style="color:#0f5132;font-weight:700;font-family:'Merriweather',serif;"><i class="fa-solid fa-bottle-water me-2 text-primary"></i>Oral Liquid Dosage</h5>
+                    <p style="color:#6b7280;font-size:0.88rem;line-height:1.7;margin:0;">Syrups, suspensions, and solutions formulated for paediatric and adult patients requiring easy-to-swallow, palatable liquid medicines.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div style="background:#fff;border-radius:16px;padding:24px 20px;box-shadow:0 4px 18px rgba(0,100,60,0.07);border-top:4px solid #20c997;">
+                    <h5 style="color:#0f5132;font-weight:700;font-family:'Merriweather',serif;"><i class="fa-solid fa-pump-soap me-2" style="color:#20c997;"></i>Topical Dosage Forms</h5>
+                    <p style="color:#6b7280;font-size:0.88rem;line-height:1.7;margin:0;">Creams, gels, ointments and lotions manufactured using high-grade raw materials for dermatological and wound-care applications.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= ETHICAL PROMOTION ======= -->
+<section id="ethical">
+    <div class="container-xl">
+        <div class="ethical-header reveal">
+            <h2>Our Ethical Marketing Commitments</h2>
+            <p>Casid Pharmaceuticals upholds the highest standards of responsible and ethical promotion across all marketing activities.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-12 col-sm-6 col-lg-3 reveal">
+                <div class="ethical-card">
+                    <i class="fa-solid fa-file-medical"></i>
+                    <h5>Science-Based Claims Only</h5>
+                    <p>Every marketing message we carry is backed by clinical evidence, peer-reviewed data, and approved product monographs — no exaggerated or misleading claims.</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 reveal">
+                <div class="ethical-card">
+                    <i class="fa-solid fa-handshake"></i>
+                    <h5>Fair Trade Practices</h5>
+                    <p>We adhere to all UCPMP (Uniform Code of Pharmaceutical Marketing Practices) guidelines set by the Ministry of Chemicals & Fertilizers, Government of India.</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 reveal">
+                <div class="ethical-card">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <h5>Patient Safety First</h5>
+                    <p>Our pharmacovigilance cell actively monitors product safety signals. Any adverse drug reactions are reported, investigated, and addressed promptly.</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 reveal">
+                <div class="ethical-card">
+                    <i class="fa-solid fa-leaf"></i>
+                    <h5>Sustainable Marketing</h5>
+                    <p>We are committed to reducing paper-based promotional materials and transitioning to digital detailing tools that are environmentally responsible.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= TESTIMONIALS ======= -->
+<section id="testimonials">
+    <div class="container-xl">
+        <div class="test-header reveal">
+            <h2>What Healthcare Professionals Say</h2>
+            <p>Trusted by doctors and pharmacists across Tamil Nadu for quality, reliability, and ethical promotion.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-12 col-md-4 reveal">
+                <div class="test-card">
+                    <span class="quote-mark">"</span>
+                    <p>Casid's products have always shown consistent quality in my patients. Their MR team provides clear, science-backed information which helps me prescribe with confidence. Particularly impressed with their antibiotic range.</p>
+                    <div class="test-author">
+                        <div class="test-avatar">DK</div>
+                        <div class="test-author-info">
+                            <strong>Dr. K. Dinesh Kumar</strong>
+                            <span>MBBS, MD — General Medicine, Trichy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 reveal">
+                <div class="test-card">
+                    <span class="quote-mark">"</span>
+                    <p>As a retail pharmacist, Casid's supply chain never fails me. Products are always in stock, delivery is on time, and the company's trade support is excellent. My customers trust the brand completely.</p>
+                    <div class="test-author">
+                        <div class="test-avatar">SR</div>
+                        <div class="test-author-info">
+                            <strong>S. Rajasekar</strong>
+                            <span>Pharmacist, Sri Lakshmi Medical Store, Salem</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 reveal">
+                <div class="test-card">
+                    <span class="quote-mark">"</span>
+                    <p>I have been prescribing Casid's paediatric syrups and vitamins for over 8 years. The quality is pharmaceutical-grade and parents appreciate the affordable pricing. A brand that truly cares about patients.</p>
+                    <div class="test-author">
+                        <div class="test-avatar">PM</div>
+                        <div class="test-author-info">
+                            <strong>Dr. P. Meenakshisundaram</strong>
+                            <span>DCH, Paediatrician — Madurai</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= CTA BANNER ======= -->
+<section id="cta-banner">
+    <div class="container reveal">
+        <h2>Partner with Casid Pharmaceuticals Today</h2>
+        <p>Whether you are a doctor, pharmacist, distributor, or stockist — we invite you to be part of our growing healthcare network across Tamil Nadu.</p>
+        <a href="contact.html" class="cta-btn"><i class="fa-solid fa-envelope me-2"></i>Contact Us</a>
+        <a href="product.html" class="cta-btn cta-btn-outline"><i class="fa-solid fa-pills me-2"></i>View Products</a>
+    </div>
+</section>
+
+<!-- ======= FOOTER (unchanged) ======= -->
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <p class="h4 text-center mt-3">About Us</p>
+                <p>Since from 2000, Casid Pharmaceuticals Pvt Ltd is a pharmaceutical manufacturing and marketing company headquarted in Trichy, india. The company products are available in Oral Solids, Oral Liquids and Topical dosage forms. Driven by value based business operations, the company's products are known for consistent quality and ethical promotion</p>
+            </div>
+            <div class="col">
+                <p class="h4 text-center mt-3">Contact Us</p>
+                <p>No.75, Ground Floor, Salai Road, Woraiyur, Trichy - 620 003</p>
+                <a href="tel:+91 93449 00369 | 70944 56981">+91 93449 00369 | 70944 56981</a><br>
+                <a href="mailto:info@casidpharma.com">info@casidpharma.com</a>
+            </div>
+            <div class="col">
+                <p class="h4 text-center mt-3">Quick Links</p>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="market.html">Marketing</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <p class="h4 text-center mt-3">Location</p>
+                <iframe class="locationiframe" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d489.8491304541345!2d78.68168!3d10.827144!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baab8a3a198ebd5%3A0xb6152f14c9e1ff0c!2sCasid%20Pharmaceuticals%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1754387833832!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ---- SCROLL REVEAL ----
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 80);
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+revealEls.forEach(el => observer.observe(el));
+
+// ---- COUNTER ANIMATION ----
+const counters = document.querySelectorAll('.counter');
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.dataset.target);
+            let current = 0;
+            const step = Math.ceil(target / 60);
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) { el.textContent = target; clearInterval(timer); }
+                else { el.textContent = current; }
+            }, 25);
+            counterObserver.unobserve(el);
+        }
+    });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
+</script>
+</body>
+</html>

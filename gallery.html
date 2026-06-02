@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Page - Casid Pharmaceuticals</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+    /*HEADER STYLING*/
+    header.navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: palegreen;
+        padding: 10px 30px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    header.navbar img {
+        max-width: 180px;
+        height: auto;
+    }
+    header.navbar .h1 {
+        font-size: 28px;
+        font-weight: 600;
+        color: #0f172a;
+        margin: 0;
+        white-space: nowrap;
+    }
+    .menu ul {
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+    }
+    .nav-link {
+        color: #0f172a !important;
+        font-weight: 500;
+        text-decoration: none;
+        transition: 0.3s ease;
+        position: relative;
+    }
+    .nav-link:hover { color: #2563eb !important; }
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: #2563eb;
+        transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    @media (max-width: 992px) {
+        header.navbar { flex-wrap: wrap; text-align: center; }
+        header.navbar .h1 { width: 100%; margin-top: 10px; font-size: 24px; }
+        .menu { width: 100%; margin-top: 10px; }
+        .menu ul { justify-content: center; flex-wrap: wrap; }
+    }
+    @media (max-width: 576px) {
+        header.navbar { padding: 10px 15px; }
+        header.navbar img { max-width: 140px; }
+        header.navbar .h1 { font-size: 20px; }
+        .menu ul { flex-direction: column; gap: 10px; }
+    }
+
+    /* ==============================
+       GALLERY HERO SECTION
+    ============================== */
+    #gallery {
+        background: linear-gradient(rgba(13, 110, 253, 0.85), rgba(32, 201, 151, 0.85)),
+                    url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88') center/cover no-repeat;
+        padding: 100px 20px;
+        color: #ffffff;
+        position: relative;
+    }
+    #gallery h1 {
+        font-size: 42px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+    #gallery .breadcrumb { background: transparent; margin-bottom: 0; }
+    #gallery .breadcrumb-item a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s ease;
+    }
+    #gallery .breadcrumb-item a:hover { color: #ffd43b; text-decoration: underline; }
+    #gallery .breadcrumb-item.active { color: #e9ecef; }
+    @media (max-width: 992px) { #gallery { padding: 80px 20px; } #gallery h1 { font-size: 34px; } }
+    @media (max-width: 576px) { #gallery { padding: 60px 15px; } #gallery h1 { font-size: 26px; } #gallery .breadcrumb { font-size: 14px; } }
+
+    /* ==============================
+       GALLERY CARDS SECTION
+    ============================== */
+    #medicine-gallery {
+        background: #f0f6ff;
+        padding: 60px 20px;
+        font-family: 'DM Sans', sans-serif;
+    }
+    #medicine-gallery .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 8px;
+    }
+    #medicine-gallery .section-subtitle {
+        color: #64748b;
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+
+    /* Filter Buttons */
+    .filter-btn {
+        border: 2px solid #0d6efd;
+        color: #0d6efd;
+        background: transparent;
+        border-radius: 30px;
+        padding: 6px 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        margin: 4px;
+    }
+    .filter-btn:hover, .filter-btn.active {
+        background: #0d6efd;
+        color: #fff;
+    }
+
+    /* Search Bar */
+    .gallery-search {
+        border: 2px solid #cbd5e1;
+        border-radius: 30px;
+        padding: 8px 20px;
+        font-size: 0.9rem;
+        outline: none;
+        width: 260px;
+        transition: border 0.2s;
+    }
+    .gallery-search:focus { border-color: #0d6efd; }
+
+    /* Medicine Card */
+    .med-card {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 4px 18px rgba(13,110,253,0.08);
+        overflow: hidden;
+        transition: transform 0.28s ease, box-shadow 0.28s ease;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .med-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 32px rgba(13,110,253,0.18);
+    }
+    .med-card-img-wrap {
+        position: relative;
+        background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+        height: 185px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .med-card-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+    .med-card:hover .med-card-img-wrap img { transform: scale(1.06); }
+    .med-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: #0d6efd;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 20px;
+        letter-spacing: 0.5px;
+    }
+    .med-card-body {
+        padding: 16px 16px 18px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .med-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 4px;
+        line-height: 1.3;
+    }
+    .med-type {
+        font-size: 0.78rem;
+        color: #64748b;
+        font-weight: 500;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .med-desc {
+        font-size: 0.82rem;
+        color: #475569;
+        line-height: 1.5;
+        flex: 1;
+    }
+    .med-tag {
+        display: inline-block;
+        margin-top: 12px;
+        background: #eff6ff;
+        color: #2563eb;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 20px;
+        border: 1px solid #bfdbfe;
+    }
+
+    /* No Results */
+    #no-results {
+        display: none;
+        text-align: center;
+        color: #94a3b8;
+        font-size: 1.1rem;
+        padding: 60px 0;
+    }
+
+    /* ==============================
+       FOOTER STYLING
+    ============================== */
+    footer {
+        background-color: cadetblue;
+        color: #ffffff;
+        padding: 40px 20px 20px 20px;
+    }
+    .footer { display: flex; flex-wrap: wrap; gap: 30px; }
+    .footer .col { min-width: 250px; }
+    .footer .h4 { font-weight: 600; margin-bottom: 15px; color: #38bdf8; }
+    .footer p { font-size: 14px; line-height: 1.6; color: #d1d5db; }
+    .footer a { color: #ffffff; text-decoration: none; font-size: 14px; transition: 0.3s ease; }
+    .footer a:hover { color: #38bdf8; text-decoration: underline; }
+    .footer ul { list-style: none; padding: 0; }
+    .footer ul li { margin-bottom: 8px; }
+    .locationiframe { width: 100%; height: 250px; border-radius: 10px; }
+    @media (max-width: 992px) { .footer { gap: 20px; } }
+    @media (max-width: 768px) {
+        .footer { flex-direction: column; text-align: center; }
+        .footer .col { width: 100%; }
+        .locationiframe { height: 220px; }
+    }
+    @media (max-width: 480px) {
+        footer { padding: 30px 15px; }
+        .footer .h4 { font-size: 18px; }
+        .footer p, .footer a { font-size: 13px; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- ======= HEADER ======= -->
+<header class="navbar">
+    <ul class="nav">
+        <!-- <img src="https://casidpharma.com/images/casidpharma-logo1.png" class="mx-5" height="100px" width="200px" alt=""> -->
+    </ul>
+    <p class="h1 ps-5">Casid Pharmaceuticals</p>
+    <div class="menu">
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="market.html">Marketing</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- ======= GALLERY HERO ======= -->
+<section id="gallery">
+    <div class="container text-center">
+        <h1>Gallery</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- ======= MEDICINE GALLERY CARDS ======= -->
+<section id="medicine-gallery">
+    <div class="container-fluid px-4">
+
+        <!-- Heading + Controls -->
+        <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-3">
+            <div>
+                <p class="section-title mb-1">Our Medicine Range</p>
+                <p class="section-subtitle mb-0">Explore our complete pharmaceutical product collection</p>
+            </div>
+            <input class="gallery-search" type="text" id="searchInput" placeholder="🔍  Search medicine...">
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="mb-4" id="filterBtns">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Tablet">Tablets</button>
+            <button class="filter-btn" data-filter="Syrup">Syrups</button>
+            <button class="filter-btn" data-filter="Capsule">Capsules</button>
+            <button class="filter-btn" data-filter="Injection">Injections</button>
+            <button class="filter-btn" data-filter="Topical">Topical</button>
+            <button class="filter-btn" data-filter="Drops">Drops</button>
+            <button class="filter-btn" data-filter="Sachet">Sachets</button>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="row g-4" id="medicineGrid"></div>
+        <div id="no-results"><p>😔 No medicines found matching your search.</p></div>
+    </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <p class="h4 text-center mt-3">About Us</p>
+                <p>Since from 2000, Casid Pharmaceuticals Pvt Ltd is a pharmaceutical manufacturing and marketing company headquarted in Trichy, india. The company products are available in Oral Solids, Oral Liquids and Topical dosage forms. Driven by value based business operations, the company's products are known for consistent quality and ethical promotion</p>
+            </div>
+            <div class="col">
+                <p class="h4 text-center mt-3">Contact Us</p>
+                <p>No.75, Ground Floor, Salai Road, Woraiyur, Trichy - 620 003</p>
+                <a href="tel:+91 93449 00369 | 70944 56981">+91 93449 00369 | 70944 56981</a><br>
+                <a href="mailto:info@casidpharma.com">info@casidpharma.com</a>
+            </div>
+            <div class="col">
+                <p class="h4 text-center mt-3">Quick Links</p>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="market.html">Marketing</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <p class="h4 text-center mt-3">Location</p>
+                <iframe class="locationiframe" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d489.8491304541345!2d78.68168!3d10.827144!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baab8a3a198ebd5%3A0xb6152f14c9e1ff0c!2sCasid%20Pharmaceuticals%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1754387833832!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const medicines = [
+    { name: "Amoxicillin 500mg", type: "Capsule", category: "Capsule", desc: "Broad-spectrum antibiotic for bacterial infections including ENT and respiratory tract.", tag: "Antibiotic", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+    { name: "Paracetamol 650mg", type: "Tablet", category: "Tablet", desc: "Analgesic and antipyretic tablet for fever and mild to moderate pain relief.", tag: "Analgesic", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&h=300&fit=crop" },
+    { name: "Cough Syrup Plus", type: "Syrup", category: "Syrup", desc: "Antitussive syrup formulated with guaifenesin for productive cough relief.", tag: "Respiratory", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop" },
+    { name: "Azithromycin 250mg", type: "Tablet", category: "Tablet", desc: "Macrolide antibiotic effective against community-acquired pneumonia and STIs.", tag: "Antibiotic", img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" },
+    { name: "Metformin 500mg", type: "Tablet", category: "Tablet", desc: "First-line oral hypoglycemic agent for management of Type 2 Diabetes Mellitus.", tag: "Anti-Diabetic", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop" },
+    { name: "Omeprazole 20mg", type: "Capsule", category: "Capsule", desc: "Proton pump inhibitor for GERD, gastric ulcers and acid-related disorders.", tag: "GI", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+    { name: "Vitamin D3 60K IU", type: "Capsule", category: "Capsule", desc: "Cholecalciferol soft gel capsule for Vitamin D deficiency and bone health.", tag: "Supplement", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&h=300&fit=crop" },
+    { name: "Cetirizine 10mg", type: "Tablet", category: "Tablet", desc: "Second-generation antihistamine for allergic rhinitis and urticaria.", tag: "Anti-Allergic", img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" },
+    { name: "Ibuprofen 400mg", type: "Tablet", category: "Tablet", desc: "NSAID for pain, inflammation and fever in adults and children.", tag: "NSAID", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop" },
+    { name: "Iron + Folic Acid", type: "Tablet", category: "Tablet", desc: "Haematinic supplement for iron deficiency anaemia in pregnancy and general use.", tag: "Supplement", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop" },
+    { name: "Salbutamol Syrup", type: "Syrup", category: "Syrup", desc: "Bronchodilator syrup for relief of bronchospasm in asthma and COPD.", tag: "Respiratory", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+    { name: "Diclofenac Gel 1%", type: "Topical", category: "Topical", desc: "Topical NSAID gel for localised muscle pain, sprains and joint inflammation.", tag: "Pain Relief", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop" },
+    { name: "Multivitamin Syrup", type: "Syrup", category: "Syrup", desc: "Comprehensive vitamin and mineral syrup for children's growth and immunity.", tag: "Paediatric", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&h=300&fit=crop" },
+    { name: "Doxycycline 100mg", type: "Capsule", category: "Capsule", desc: "Tetracycline antibiotic used for acne, malaria prophylaxis and respiratory infections.", tag: "Antibiotic", img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" },
+    { name: "Clotrimazole Cream", type: "Topical", category: "Topical", desc: "Antifungal cream for treatment of ringworm, athlete's foot and candidiasis.", tag: "Antifungal", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop" },
+    { name: "Calcium + D3 Tablet", type: "Tablet", category: "Tablet", desc: "Bone health supplement combining calcium carbonate with vitamin D3.", tag: "Supplement", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+    { name: "Ondansetron 4mg", type: "Tablet", category: "Tablet", desc: "Serotonin antagonist antiemetic for nausea and vomiting post chemotherapy.", tag: "Anti-emetic", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop" },
+    { name: "Ranitidine 150mg", type: "Tablet", category: "Tablet", desc: "H2 receptor blocker for peptic ulcers, GERD and Zollinger-Ellison syndrome.", tag: "GI", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&h=300&fit=crop" },
+    { name: "B-Complex Injection", type: "Injection", category: "Injection", desc: "Parenteral B-vitamin complex for deficiency states and neurological support.", tag: "Supplement", img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" },
+    { name: "Pantoprazole 40mg", type: "Tablet", category: "Tablet", desc: "PPI for erosive esophagitis, GERD and prevention of NSAID-related ulcers.", tag: "GI", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop" },
+    { name: "Levocetirizine 5mg", type: "Tablet", category: "Tablet", desc: "R-enantiomer antihistamine for chronic urticaria and perennial allergic rhinitis.", tag: "Anti-Allergic", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+    { name: "Atorvastatin 10mg", type: "Tablet", category: "Tablet", desc: "HMG-CoA reductase inhibitor for hypercholesterolaemia and cardiovascular risk.", tag: "Cardiac", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop" },
+    { name: "Prednisolone 5mg", type: "Tablet", category: "Tablet", desc: "Corticosteroid for inflammatory, allergic and autoimmune conditions.", tag: "Steroid", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&h=300&fit=crop" },
+    { name: "Electral ORS Sachet", type: "Sachet", category: "Sachet", desc: "Oral rehydration salts sachet for dehydration due to diarrhoea and vomiting.", tag: "Rehydration", img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" },
+    { name: "Antacid Suspension", type: "Syrup", category: "Syrup", desc: "Aluminium and magnesium hydroxide suspension for acid neutralisation and heartburn.", tag: "GI", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop" },
+    { name: "Metronidazole 400mg", type: "Tablet", category: "Tablet", desc: "Antiprotozoal and antibacterial tablet for amoebic dysentery and anaerobic infections.", tag: "Antibiotic", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+    { name: "Zinc Sulphate Syrup", type: "Syrup", category: "Syrup", desc: "Paediatric zinc supplement for diarrhoea management and immune support.", tag: "Paediatric", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop" },
+    { name: "Amlodipine 5mg", type: "Tablet", category: "Tablet", desc: "Calcium channel blocker for hypertension and stable angina pectoris.", tag: "Cardiac", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&h=300&fit=crop" },
+    { name: "Ketoconazole Shampoo", type: "Topical", category: "Topical", desc: "Antifungal shampoo for seborrhoeic dermatitis and dandruff caused by Malassezia.", tag: "Derma", img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" },
+    { name: "Ciprofloxacin 500mg", type: "Tablet", category: "Tablet", desc: "Fluoroquinolone antibiotic for urinary tract, GI and respiratory infections.", tag: "Antibiotic", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop" },
+    { name: "Lactulose Syrup", type: "Syrup", category: "Syrup", desc: "Osmotic laxative for constipation and hepatic encephalopathy management.", tag: "GI", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+    { name: "Glimepiride 1mg", type: "Tablet", category: "Tablet", desc: "Sulphonylurea for stimulating insulin secretion in Type 2 diabetes.", tag: "Anti-Diabetic", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop" },
+    { name: "Eye Drops (Tropicamide)", type: "Drops", category: "Drops", desc: "Mydriatic eye drops for pupil dilation during ophthalmological examination.", tag: "Ophthalmic", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&h=300&fit=crop" },
+    { name: "Cefixime 200mg", type: "Capsule", category: "Capsule", desc: "Third-generation cephalosporin for gonorrhoea, otitis media and UTI.", tag: "Antibiotic", img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" },
+    { name: "Fluconazole 150mg", type: "Capsule", category: "Capsule", desc: "Systemic antifungal capsule for vaginal candidiasis and oral thrush.", tag: "Antifungal", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop" },
+    { name: "Naproxen 500mg", type: "Tablet", category: "Tablet", desc: "Long-acting NSAID for arthritis, dysmenorrhoea and acute gout attacks.", tag: "NSAID", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+    { name: "Digoxin 0.25mg", type: "Tablet", category: "Tablet", desc: "Cardiac glycoside for heart failure and rate control in atrial fibrillation.", tag: "Cardiac", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop" },
+    { name: "Clobetasol Cream", type: "Topical", category: "Topical", desc: "Potent corticosteroid cream for eczema, psoriasis and dermatitis.", tag: "Derma", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&h=300&fit=crop" },
+    { name: "Protein Powder Sachet", type: "Sachet", category: "Sachet", desc: "High-protein nutritional supplement sachet for post-operative and geriatric care.", tag: "Nutrition", img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" },
+    { name: "Losartan 50mg", type: "Tablet", category: "Tablet", desc: "ARB antihypertensive for hypertension, diabetic nephropathy and heart failure.", tag: "Cardiac", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop" },
+    { name: "Clindamycin 300mg", type: "Capsule", category: "Capsule", desc: "Lincosamide antibiotic for skin, soft tissue and anaerobic bacterial infections.", tag: "Antibiotic", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+    { name: "Ear Drops (Ciprofloxacin)", type: "Drops", category: "Drops", desc: "Otic drops for bacterial otitis externa and middle ear infections.", tag: "ENT", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop" },
+    { name: "Spironolactone 25mg", type: "Tablet", category: "Tablet", desc: "Aldosterone antagonist for heart failure, oedema and hypertension.", tag: "Cardiac", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&h=300&fit=crop" },
+    { name: "Betahistine 16mg", type: "Tablet", category: "Tablet", desc: "Histamine analogue for vertigo, tinnitus and hearing loss in Ménière's disease.", tag: "ENT", img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" },
+    { name: "Fexofenadine 120mg", type: "Tablet", category: "Tablet", desc: "Non-sedating antihistamine for seasonal allergic rhinitis and urticaria.", tag: "Anti-Allergic", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop" },
+    { name: "Vitamin B12 Injection", type: "Injection", category: "Injection", desc: "Cyanocobalamin parenteral injection for pernicious anaemia and B12 deficiency.", tag: "Supplement", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+    { name: "Montelukast 10mg", type: "Tablet", category: "Tablet", desc: "Leukotriene receptor antagonist for asthma prophylaxis and allergic rhinitis.", tag: "Respiratory", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop" },
+    { name: "Neem Facewash Gel", type: "Topical", category: "Topical", desc: "Herbal neem-based cleansing gel for acne-prone and oily skin types.", tag: "Derma", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&h=300&fit=crop" },
+    { name: "Chlorpheniramine 4mg", type: "Tablet", category: "Tablet", desc: "First-generation antihistamine for allergic symptoms, cold and hay fever.", tag: "Anti-Allergic", img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" },
+    { name: "Probiotics Sachet", type: "Sachet", category: "Sachet", desc: "Multi-strain probiotic sachet for gut health, IBS and antibiotic-associated diarrhoea.", tag: "GI", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop" },
+    { name: "Enalapril 5mg", type: "Tablet", category: "Tablet", desc: "ACE inhibitor for hypertension, heart failure and diabetic nephropathy.", tag: "Cardiac", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+    { name: "Mebendazole 100mg", type: "Tablet", category: "Tablet", desc: "Anthelmintic for pinworm, roundworm, hookworm and whipworm infections.", tag: "Antiparasitic", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop" },
+    { name: "Nasal Drops (Xylometazoline)", type: "Drops", category: "Drops", desc: "Decongestant nasal drops for blocked nose due to colds and sinusitis.", tag: "ENT", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&h=300&fit=crop" },
+    { name: "Tramadol 50mg", type: "Capsule", category: "Capsule", desc: "Centrally acting opioid analgesic for moderate to severe acute pain.", tag: "Analgesic", img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" },
+    { name: "Dextromethorphan Syrup", type: "Syrup", category: "Syrup", desc: "Antitussive syrup for suppression of dry, non-productive cough.", tag: "Respiratory", img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop" },
+    { name: "Etoricoxib 60mg", type: "Tablet", category: "Tablet", desc: "COX-2 selective inhibitor for osteoarthritis, rheumatoid arthritis and gout.", tag: "NSAID", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+    { name: "Diphtheria Toxoid Inj.", type: "Injection", category: "Injection", desc: "Immunising agent for prevention of diphtheria in infants and children.", tag: "Vaccine", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop" },
+    { name: "Terbinafine 250mg", type: "Tablet", category: "Tablet", desc: "Allylamine antifungal for onychomycosis and tinea infections of skin and scalp.", tag: "Antifungal", img: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&h=300&fit=crop" },
+];
+
+const grid = document.getElementById('medicineGrid');
+const noResults = document.getElementById('no-results');
+
+function buildCards(data) {
+    grid.innerHTML = '';
+    if (data.length === 0) {
+        noResults.style.display = 'block';
+        return;
+    }
+    noResults.style.display = 'none';
+    data.forEach((med, i) => {
+        const col = document.createElement('div');
+        col.className = 'col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 med-item';
+        col.setAttribute('data-category', med.category);
+        col.style.animationDelay = `${i * 0.04}s`;
+        col.innerHTML = `
+            <div class="med-card h-100">
+                <div class="med-card-img-wrap">
+                    <img src="${med.img}" alt="${med.name}" loading="lazy">
+                    <span class="med-badge">${med.type}</span>
+                </div>
+                <div class="med-card-body">
+                    <div>
+                        <p class="med-name">${med.name}</p>
+                        <p class="med-type">${med.type}</p>
+                        <p class="med-desc">${med.desc}</p>
+                    </div>
+                    <span class="med-tag">${med.tag}</span>
+                </div>
+            </div>
+        `;
+        grid.appendChild(col);
+    });
+}
+
+buildCards(medicines);
+
+// Filter
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        const search = document.getElementById('searchInput').value.toLowerCase();
+        filterAndSearch(filter, search);
+    });
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', function() {
+    const search = this.value.toLowerCase();
+    const filter = document.querySelector('.filter-btn.active').dataset.filter;
+    filterAndSearch(filter, search);
+});
+
+function filterAndSearch(filter, search) {
+    const filtered = medicines.filter(m => {
+        const matchCat = filter === 'all' || m.category === filter;
+        const matchSearch = m.name.toLowerCase().includes(search) || m.tag.toLowerCase().includes(search) || m.desc.toLowerCase().includes(search);
+        return matchCat && matchSearch;
+    });
+    buildCards(filtered);
+}
+</script>
+</body>
+</html>
