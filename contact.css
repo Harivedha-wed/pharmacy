@@ -1,0 +1,444 @@
+/* Header Styling */
+header.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: palegreen;
+    padding: 10px 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo */
+header.navbar img {
+    max-width: 180px;
+    height: auto;
+}
+
+/* Company Name */
+header.navbar .h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* Navigation Menu */
+.menu ul {
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Nav Links */
+.nav-link {
+    color: #0f172a !important;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s ease;
+    position: relative;
+}
+
+/* Hover Effect */
+.nav-link:hover {
+    color: #2563eb !important;
+}
+
+/* Underline Animation */
+.nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #2563eb;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    header.navbar {
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    header.navbar .h1 {
+        width: 100%;
+        margin-top: 10px;
+        font-size: 24px;
+    }
+
+    .menu {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .menu ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 576px) {
+    header.navbar {
+        padding: 10px 15px;
+    }
+
+    header.navbar img {
+        max-width: 140px;
+    }
+
+    header.navbar .h1 {
+        font-size: 20px;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+/* Contact Box Container */
+.contact-box {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    max-width: 600px;
+    margin: auto;
+    transition: 0.3s ease;
+}
+
+/* Hover effect */
+.contact-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Paragraph Styling */
+.contact-box p {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #334155;
+}
+
+/* Remove last margin */
+.contact-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* Icons */
+.contact-box i {
+    font-size: 18px;
+    color: #2563eb;   /* Professional blue */
+    min-width: 22px;
+    margin-top: 4px;
+}
+
+/* Strong Labels */
+.contact-box strong {
+    color: #0f172a;
+    margin-right: 4px;
+}
+
+/* Links */
+.contact-box a {
+    color: #0f172a;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+/* Link Hover */
+.contact-box a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 768px) {
+    .contact-box {
+        padding: 25px;
+    }
+
+    .contact-box p {
+        font-size: 14px;
+    }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 480px) {
+    .contact-box {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .contact-box p {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        font-size: 13px;
+    }
+
+    .contact-box i {
+        margin-top: 0;
+    }
+}
+.map-box iframe {
+    width: 100%;
+    height: 300px;
+    border: 0;
+    border-radius: 15px;
+}
+/* Section Background */
+#Contact {
+    background: linear-gradient(to right, #e6f7f1, #f0fbff);
+    padding: 70px 20px;
+}
+
+/* Section Heading */
+#Contact h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #0f5132;   /* Dark medical green */
+    margin-bottom: 40px;
+}
+
+/* Contact Card */
+.contact-box {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 128, 0, 0.08);
+    border-left: 6px solid #20c997; /* Medical green accent */
+    transition: 0.3s ease;
+}
+
+/* Card Hover */
+.contact-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0, 128, 0, 0.15);
+}
+
+/* Contact Text */
+.contact-box p {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #495057;
+    margin-bottom: 18px;
+}
+
+/* Icons */
+.contact-box i {
+    font-size: 18px;
+    color: #20c997;  /* Green icon */
+    background: #e6f7f1;
+    padding: 10px;
+    border-radius: 50%;
+    min-width: 38px;
+    text-align: center;
+}
+
+/* Labels */
+.contact-box strong {
+    color: #0f5132;
+}
+
+/* Links */
+.contact-box a {
+    color: #198754;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.contact-box a:hover {
+    color: #0d6efd;
+    text-decoration: underline;
+}
+
+/* Map Box */
+.map-box iframe {
+    width: 100%;
+    height: 320px;
+    border: 0;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #Contact {
+        padding: 50px 15px;
+    }
+
+    #Contact h2 {
+        font-size: 24px;
+    }
+
+    .contact-box {
+        padding: 25px;
+    }
+
+    .map-box iframe {
+        height: 250px;
+    }
+}
+/* Marketing Hero Section */
+#tact {
+    background: linear-gradient(rgba(13, 110, 253, 0.85), rgba(32, 201, 151, 0.85)),
+                url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88') center/cover no-repeat;
+    padding: 100px 20px;
+    color: #ffffff;
+    position: relative;
+}
+
+/* Center Content */
+#tact .tact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Heading */
+#tact h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+/* Breadcrumb */
+#tact .breadcrumb {
+    background: transparent;
+    margin-bottom: 0;
+}
+
+/* Breadcrumb Links */
+#tact .breadcrumb-item a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+#tact .breadcrumb-item a:hover {
+    color: #ffd43b;
+    text-decoration: underline;
+}
+
+/* Active Breadcrumb */
+#tact .breadcrumb-item.active {
+    color: #e9ecef;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    #tact {
+        padding: 80px 20px;
+    }
+
+    #tact h1 {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 576px) {
+    #tact {
+        padding: 60px 15px;
+    }
+
+    #tact h1 {
+        font-size: 26px;
+    }
+
+    #tact .breadcrumb {
+        font-size: 14px;
+    }
+}/* Marketing Hero Section */
+#tact {
+    background: linear-gradient(rgba(13, 110, 253, 0.85), rgba(32, 201, 151, 0.85)),
+                url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88') center/cover no-repeat;
+    padding: 100px 20px;
+    color: #ffffff;
+    position: relative;
+}
+
+/* Center Content */
+#tact .tact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Heading */
+#tact h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+/* Breadcrumb */
+#tact .breadcrumb {
+    background: transparent;
+    margin-bottom: 0;
+}
+
+/* Breadcrumb Links */
+#tact .breadcrumb-item a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+#tact .breadcrumb-item a:hover {
+    color: #ffd43b;
+    text-decoration: underline;
+}
+
+/* Active Breadcrumb */
+#tact .breadcrumb-item.active {
+    color: #e9ecef;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    #tact {
+        padding: 80px 20px;
+    }
+
+    #tact h1 {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 576px) {
+    #tact {
+        padding: 60px 15px;
+    }
+
+    #tact h1 {
+        font-size: 26px;
+    }
+
+    #tact .breadcrumb {
+        font-size: 14px;
+    }
+}
